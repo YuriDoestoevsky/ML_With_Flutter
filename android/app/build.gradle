@@ -1,0 +1,48 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.ml_with_flutter"  // Namespace added
+    compileSdk = 34  // Update to the latest compile SDK version
+    ndkVersion = "21.4.7075529"  // Update with your correct NDK version if needed
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.ml_with_flutter"
+        minSdkVersion 21  // Minimum SDK version for your app
+        targetSdk = 34  // Update target SDK to 34 to match plugin requirements
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+
+    aaptOptions {
+        noCompress "tflite"
+        noCompress "lite"
+    }
+}
+
+dependencies {
+    implementation 'org.tensorflow:tensorflow-lite:2.10.0'  // Update the version if required
+}
+
+
+flutter {
+    source = "../.."  // Assuming your Flutter SDK path is correct
+}
